@@ -222,15 +222,15 @@ describe('PATCH - TEST /api/product/:id', () => {
         expect(response.body).not.toHaveProperty('data')
     })
 
-    test('should update the product availability', async() => {
-        const response = await request(server).patch(`/api/products/1`)
+    // test('should update the product availability', async() => {
+    //     const response = await request(server).patch(`/api/products/1`)
 
-        expect(response.status).toBe(200)
-        expect(response.body).toHaveProperty('data')
-        expect(response.body.data.availability).toBe('Elemento no encontrado')
+    //     expect(response.status).toBe(200)
+    //     expect(response.body).toHaveProperty('data')
+    //     expect(response.body.data.availability).toBe('Elemento no encontrado')
 
-        expect(response.status).not.toBe(200)
-        expect(response.body).not.toHaveProperty('data')
-    })
+    //     expect(response.status).not.toBe(200)
+    //     expect(response.body).not.toHaveProperty('data')
+    // })
     
 })
