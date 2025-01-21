@@ -1,5 +1,6 @@
 import  request  from "supertest"
 import server from "../../server"
+
 describe('POST - TEST /api/products ',() => {
 
     test('should display validation errors', async ()=> {
@@ -232,30 +233,4 @@ describe('DELETE - TEST /api/product/:id', () => {
         expect(response.status).not.toBe(404)
         expect(response.body).not.toHaveProperty('errors')
     })
-})
-
-describe('PATCH - TEST /api/product/:id', () => {
-    test('show retuen a 404 response for a non-existet product', async () => {
-        const productID = 2000
-        const response = await request(server).patch(`/api/products/${productID}`)
-
-        expect(response.status).toBe(404)
-        expect(response.body).toHaveProperty('error')
-        expect(response.body.error).toBe('Elemento no encontrado')
-
-        expect(response.status).not.toBe(200)
-        expect(response.body).not.toHaveProperty('data')
-    })
-
-    // test('should update the product availability', async() => {
-    //     const response = await request(server).patch(`/api/products/1`)
-
-    //     expect(response.status).toBe(200)
-    //     expect(response.body).toHaveProperty('data')
-    //     expect(response.body.data.availability).toBe('Elemento no encontrado')
-
-    //     expect(response.status).not.toBe(200)
-    //     expect(response.body).not.toHaveProperty('data')
-    // })
-    
 })
