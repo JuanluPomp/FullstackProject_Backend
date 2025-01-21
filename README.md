@@ -1,2 +1,2 @@
 
-esta es una restb api que trabaja con metodos post, patch, put, get, a una base d edatos en postgresql
+Esta es una REST API  hecha en un entorno desarrollada con node, typescript y react. usando librerias como express y sequelize para realizar consultas en una base de datos en postgresql
