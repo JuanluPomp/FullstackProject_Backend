@@ -4,7 +4,11 @@ import Product from '../models/Product.model';
 
 export const createProducts = async (req: Request, res: Response): Promise<void> => {
     // Crear el producto
-    const product = await Product.create(req.body);
+    const product = await Product.create({
+        name: req.body.name,
+        price: req.body.price,
+        availability: true
+    });
     res.status(201).json({ data: product }); // Devuelve el producto creado con un status 201
 }
 
@@ -13,7 +17,6 @@ export const getProducts = async (req: Request,res: Response) => {
         order: [
             ['id', 'ASC']
     ],
-    limit: 3,
     attributes: {exclude: ['createdAt', 'updatedAt']}
     })
     res.json({data: products})
@@ -42,6 +45,8 @@ export const updateProduct = async (req: Request,res: Response) => {
         }
 
         //Update Product
+        product.name = req.body.name
+        product.price = req.body.price
         product.availability = req.body.availability
         await product.save()
         res.json({data: product}) 
