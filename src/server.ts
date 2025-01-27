@@ -50,7 +50,7 @@ const allowedOrigins = [
         callback(new Error("Acceso denegado por CORS"));
       }
     },
-    methods: "GET,POST,PUT,DELETE",
+    methods: "GET,POST,PUT,PATCH,DELETE",
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   };
