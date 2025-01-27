@@ -24,17 +24,38 @@ connectDB()
 const server = express()
 
 //Permitir Conexiones
-const corsOptions : CorsOptions = {
-    origin:  function(origin, callback){
-        if(origin === process.env.FRONTEND_URL){
-            callback(null, true)
-            console.log('permitir...')
-        }else{
-            callback(new Error('CORS: acceso denegado'))
-        }
-    }
-}
-server.use(cors(corsOptions))
+// const corsOptions : CorsOptions = {
+//     origin:  function(origin, callback){
+//         if(origin === process.env.FRONTEND_URL){
+//             callback(null, true)
+//             console.log('permitir...')
+//         }else{
+//             callback(new Error('CORS: acceso denegado'))
+//         }
+//     }
+// }
+// server.use(cors(corsOptions))
+
+// Configuración de CORS
+const allowedOrigins = [
+    process.env.FRONTEND_URL,
+    "http://localhost:3000", // Para desarrollo local
+  ];
+  
+  const corsOptions = {
+    origin: function (origin, callback) {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Acceso denegado por CORS"));
+      }
+    },
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  };
+  
+server.use(cors(corsOptions));
 
 //Leer datos del server
 server.use(express.json())
