@@ -38,7 +38,7 @@ const server = express()
 
 // Configuración de CORS
 const allowedOrigins = [
-    process.env.FRONTEND_URL,
+    "https://fullstack-project-frontend-tvla.vercel.app",
     "http://localhost:3000", // Para desarrollo local
   ];
   
